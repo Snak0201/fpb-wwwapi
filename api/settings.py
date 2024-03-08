@@ -30,7 +30,10 @@ SECRET_KEY = env("SECRET_KEY")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = env("DJANGO_ENV") == "development"
 
-ALLOWED_HOSTS = []
+if env("DJANGO_ENV") == "development":
+    ALLOWED_HOSTS = ["*"]
+else:
+    ALLOWED_HOSTS = ["fpbwwwapi.pythonanywhere.com"]
 
 
 # Application definition
