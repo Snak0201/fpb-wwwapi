@@ -1,1 +1,4 @@
 django == 5.0
+flake8
+isort
+black
