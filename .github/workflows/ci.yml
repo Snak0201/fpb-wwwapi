@@ -75,6 +75,7 @@ jobs:
     env:
       GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       SECRET_KEY: ${{ secrets.SECRET_KEY }}
+      DJANGO_ENV: ${{ secrets.DJANGO_ENV }}
 
     steps:
       - name: Checkout repository
