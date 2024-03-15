@@ -1,8 +1,10 @@
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.views import APIView
+from sympy import fibonacci
 
 from .serializers import FibonacciSerializer, handle_fibonacci_serializer_exception
+
 
 # Create your views here.
 class FibonacciNumberAPIView(APIView):
@@ -13,7 +15,7 @@ class FibonacciNumberAPIView(APIView):
         n = request.query_params.get("n")
         serializer = FibonacciSerializer(data={"n": n})
         serializer.is_valid(raise_exception=True)
-        print(serializer.validated_data)
-        response = {"value": serializer.validated_data.get("n")}
+        n = serializer.validated_data.get("n")
+        response = {"value": int(fibonacci(n))}
 
         return Response(response, status=status.HTTP_200_OK)

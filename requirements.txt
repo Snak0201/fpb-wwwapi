@@ -4,3 +4,4 @@ isort
 black
 django-environ
 djangorestframework
+sympy
