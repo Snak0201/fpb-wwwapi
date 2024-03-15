@@ -11,9 +11,9 @@ class FibonacciNumberAPIView(APIView):
 
     def get(self, request):
         n = request.query_params.get("n")
-        serializer = FibonacciSerializer(data={"number": n})
+        serializer = FibonacciSerializer(data={"n": n})
         serializer.is_valid(raise_exception=True)
         print(serializer.validated_data)
-        response = {"value": serializer.validated_data.get("number")}
+        response = {"value": serializer.validated_data.get("n")}
 
         return Response(response, status=status.HTTP_200_OK)
