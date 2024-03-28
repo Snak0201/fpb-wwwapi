@@ -47,6 +47,7 @@ INSTALLED_APPS = [
     "django.contrib.staticfiles",
     "accounts.apps.AccountsConfig",
     "fibonacci.apps.FibonacciConfig",
+    "rest_framework",
 ]
 
 MIDDLEWARE = [
