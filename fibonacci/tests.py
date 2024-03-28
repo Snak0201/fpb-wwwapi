@@ -1,18 +1,50 @@
-# from django.test import TestCase
-from rest_framework.test import APITestCase
 from django.urls import reverse
-from urllib.parse import urlencode
-
+from rest_framework.test import APITestCase
 
 # Create your tests here.
 
+
 class FibonacciAPITestCase(APITestCase):
-  
-  def test_request_with_valid_params_returns_correct_value(self):
-    path = "".join([reverse('sampleapp:send_mail'),'?',urlencode(dict(n=10))])
-    response = self.client.get(reverse('sampleapp:send_mail'), {"n": 10})
-    self.assertEqual(response.status_code, 200)
-    expected_json_dict = {
-        "value": 55
-    }
-    self.assertJSONEqual(response.content, expected_json_dict)
+    """api/fibonacci/v1/number"""
+
+    def test_get_with_valid_params_returns_correct_value(self):
+        """n>0のとき、正しい値を取得できる"""
+        response = self.client.get(reverse("fibonacci:number"), {"n": 10})
+        self.assertEqual(response.status_code, 200)
+        expected_json_dict = {"value": 55}
+        self.assertJSONEqual(response.content, expected_json_dict)
+
+    def test_get_with_0_returns_correct_value(self):
+        """n=0のとき、正しい値を取得できる"""
+        response = self.client.get(reverse("fibonacci:number"), {"n": 0})
+        self.assertEqual(response.status_code, 200)
+        expected_json_dict = {"value": 0}
+        self.assertJSONEqual(response.content, expected_json_dict)
+
+    def test_get_with_negative_integer_returns_400_error(self):
+        """n<0のとき、エラーとなる"""
+        response = self.client.get(reverse("fibonacci:number"), {"n": -1})
+        self.assertEqual(response.status_code, 400)
+        expected_json_dict = {"errors": {"n": ["この値は0以上にしてください。"]}, "value": None}
+        self.assertJSONEqual(response.content, expected_json_dict)
+
+    def test_get_with_float_returns_400_error(self):
+        """nが小数を含むとき、エラーとなる"""
+        response = self.client.get(reverse("fibonacci:number"), {"n": 0.5})
+        self.assertEqual(response.status_code, 400)
+        expected_json_dict = {"errors": {"n": ["有効な整数を入力してください。"]}, "value": None}
+        self.assertJSONEqual(response.content, expected_json_dict)
+
+    def test_get_with_none_returns_400_error(self):
+        """nがないとき、エラーとなる"""
+        response = self.client.get(reverse("fibonacci:number"))
+        self.assertEqual(response.status_code, 400)
+        expected_json_dict = {"errors": {"n": ["この項目はnullにできません。"]}, "value": None}
+        self.assertJSONEqual(response.content, expected_json_dict)
+
+    def test_post_returns_405_error(self):
+        """リクエストメソッドがPOSTのとき、エラーとなる"""
+        response = self.client.post(reverse("fibonacci:number"))
+        self.assertEqual(response.status_code, 405)
+        expected_json_dict = {"errors": {"detail": 'メソッド "POST" は許されていません。'}, "value": None}
+        self.assertJSONEqual(response.content, expected_json_dict)

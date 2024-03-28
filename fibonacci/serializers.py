@@ -10,10 +10,12 @@ def handle_fibonacci_serializer_exception(exc, context):
 
         for key, value in response.data.items():
             error[key] = value
-            del response.data[key]
 
-        response.data["errors"] = error
+        # NOTE: 元々のエラーは削除してレスポンスを組みなおす
+        response.data.clear()
+
         response.data["value"] = None
+        response.data["errors"] = error
         response.exc = exc
     return response
 
