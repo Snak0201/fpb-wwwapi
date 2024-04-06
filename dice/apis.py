@@ -1,5 +1,6 @@
-from rest_framework import views, response, status
 from random import randint
+
+from rest_framework import response, status, views
 
 
 class SimpleDiceAPIView(views.APIView):

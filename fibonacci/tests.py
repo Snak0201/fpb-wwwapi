@@ -6,6 +6,7 @@ from rest_framework.test import APITestCase
 
 class FibonacciAPITestCase(APITestCase):
     """api/fibonacci/v1/number"""
+
     def setUp(self):
         self.url = reverse("fibonacci:number")
 

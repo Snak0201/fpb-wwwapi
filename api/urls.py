@@ -23,5 +23,5 @@ from django.urls import path
 urlpatterns = [
     # path('admin/', admin.site.urls),
     path("api/fibonacci/v1/", include("fibonacci.urls")),
-    path("api/dice/v1/", include("dice.urls"))
+    path("api/dice/v1/", include("dice.urls")),
 ]
