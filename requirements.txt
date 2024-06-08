@@ -1,4 +1,4 @@
-django == 5.0
+django == 5.0.3
 flake8
 isort
 black
