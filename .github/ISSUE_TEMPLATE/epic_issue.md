@@ -1,17 +1,13 @@
 ---
-name: Feature request
-about: Suggest an idea for this project
+name: Epic issue
+about: Issue in epic
 title: '{価値を提供したい人}が{ゴール}できる'
 labels: enhancement
 assignees: ''
 
 ---
 
-# 理由
-- 
-## 詳細
-- 
-## 受け入れ条件
+# 受け入れ条件
 - [ ] `true`が`true`である
 - [ ] `false`を`true`にできる
 ## 実装方針
@@ -20,6 +16,7 @@ assignees: ''
 - メジャーリリース
 - マイナーリリース
 - パッチリリース
+- epicブランチへのマージ
 - 不要
 ## Ready条件
 - IssueやEpicの理由を読んだうえで、上記の項目がすべて記載されている

@@ -1,20 +1,25 @@
 ---
 name: Spike
 about: Research or make a prototype for estimate
-title: ''
+title: '{調査したいこと}が分かる'
 labels: spike
 assignees: ''
 
 ---
 
-# 目的
-{目的}のための調査／試作
+# 理由
+
 ## 詳細
 - 
 ## 受け入れ条件
-- [ ] trueがtrueだと分かる
+- [ ] `true`が`true`であると分かっている
+- [ ] 次のアクションに応じてIssueが切られている
+
 ## 期限
 開始後4hまで
+## 結果
+-
+## 次のアクション
+-
 ## 注意
-- スパイク結果はコメントに書く
-- スパイクの作成物は、`spike-N-hoge`ブランチにpushする（NはこのIssueの番号）
+- スパイクの作成物がある場合は、`spike-N-hoge`ブランチにpushする（NはこのIssueの番号）
